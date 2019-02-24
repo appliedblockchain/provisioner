@@ -65,10 +65,6 @@ module Provisioning
     setupDockerSwarm.()
   end
 
-  def antani
-
-  end
-
 end
 
 include Provisioning
