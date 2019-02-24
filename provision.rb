@@ -1,18 +1,20 @@
 require_relative 'env'
 include SharedUtils
 
-SHOW_PREREQ = false
-SETUP_ROOT_SSH = false
-INITIAL_APT_UPDATE = false
-# main
-INSTALL_PACKAGES = false
-INSTALL_DOCKER = false
+# - skip everything
+# SHOW_PREREQ = false
+# SETUP_ROOT_SSH = false
+# INITIAL_APT_UPDATE = false
+# # main
+# INSTALL_PACKAGES = false
+# INSTALL_DOCKER = false
 
-# SHOW_PREREQ = true
-# SETUP_ROOT_SSH  = true
-# INITIAL_APT_UPDATE = true
-# INSTALL_PACKAGES = true
-# INSTALL_DOCKER = true
+# - do everything
+SHOW_PREREQ = true
+SETUP_ROOT_SSH  = true
+INITIAL_APT_UPDATE = true
+INSTALL_PACKAGES = true
+INSTALL_DOCKER = true
 
 include Prereqs
 include SetupDockerSwarm
