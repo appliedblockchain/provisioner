@@ -15,9 +15,18 @@ INSTALL_DOCKER = false
 # INSTALL_DOCKER = true
 
 include Prereqs
+include SetupDockerSwarm
 
+# for session tasks:
 IP_CURR = IP_A
 # IP_CURR = IP_B
+
+module SSHUtils
+  SSHCmd = -> {
+    # TODO: "port" ssh_all_exe_su() as pure (stateless) function
+    # ported_ssh_all_exe_su.()
+  }
+end
 
 module Provisioning
 
@@ -43,8 +52,17 @@ module Provisioning
 
   def setup_docker_swarm
     puts "3) Setup docker swarm"
+    return unless RC_RELEASE
+    puts "you are running a release which din't landed as stable yet - see changelog (TODO create a changelog)"
 
-    puts "TODO"
+    include SSHUtils
+    sshCmd = SSHUtils::SSHCmd
+
+    sshCmd = -> {
+      #...
+    }
+
+    setupDockerSwarm.()
   end
 
   def antani
