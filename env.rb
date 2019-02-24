@@ -1,5 +1,6 @@
 require_relative 'lib/ssh_utils'
 require_relative 'lib/prereqs'
+require_relative 'lib/setup-docker-swarm'
 
 # TODO: load config
 # TODO: parse config

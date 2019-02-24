@@ -1,3 +1,5 @@
+require 'open3'
+
 module SSHUtils
 
   # ssh utils
@@ -6,6 +8,10 @@ module SSHUtils
     exe "ssh -t #{IP_CURR} \"#{cmd}\""
   end
 
+  SSHCmd = -> (ip, cmd) {
+    exe "ssh -t #{ip} \"#{cmd}\""
+  }
+
   def ssh_exe_user(cmd, user: "ubuntu")
     exe "ssh -t #{user}@#{IP_CURR} 'sudo -u root #{cmd}'"
   end
@@ -13,10 +19,6 @@ module SSHUtils
   def ssh_exe_out(cmd)
     exe "ssh -t #{IP_CURR} '#{cmd}' && echo '<OK>'"
   end
-
-  # def ssh_exe_su(cmd)
-  #   exe "ssh #{IP_CURR} 'sudo su -c \"#{cmd}\"'"
-  # end
 
   def ssh_all_exe_su(cmd)
     threads = []
@@ -48,8 +50,10 @@ module SharedUtils
     cd_cmd = "cd #{dir} && " if dir
     cmd = "#{cd_cmd}#{cmd}"
     puts "executing: #{cmd}"
-    out = system cmd
+    # out = system cmd
+    out, err, st = Open3.capture3 cmd
     puts out
+    puts "#{err}\n"
     out
   end
 

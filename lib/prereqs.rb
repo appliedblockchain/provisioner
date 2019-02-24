@@ -14,6 +14,9 @@ module Prereqs
       "
     end
 
+    puts "Press any key to proceed or 'Ctrl-C' to abort..."
+    gets unless RC_RELEASE
+
     if SETUP_ROOT_SSH
       user = "ubuntu"
       ssh_all_exe_su_user "cp /home/#{user}/.ssh/authorized_keys /root/.ssh/authorized_keys"

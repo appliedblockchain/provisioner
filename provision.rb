@@ -5,7 +5,6 @@ include SharedUtils
 # SHOW_PREREQ = false
 # SETUP_ROOT_SSH = false
 # INITIAL_APT_UPDATE = false
-# # main
 # INSTALL_PACKAGES = false
 # INSTALL_DOCKER = false
 
@@ -16,19 +15,15 @@ INITIAL_APT_UPDATE = true
 INSTALL_PACKAGES = true
 INSTALL_DOCKER = true
 
+# release type
+RC_RELEASE = true
+
 include Prereqs
 include SetupDockerSwarm
 
 # for session tasks:
 IP_CURR = IP_A
 # IP_CURR = IP_B
-
-module SSHUtils
-  SSHCmd = -> {
-    # TODO: "port" ssh_all_exe_su() as pure (stateless) function
-    # ported_ssh_all_exe_su.()
-  }
-end
 
 module Provisioning
 
@@ -57,13 +52,7 @@ module Provisioning
     return unless RC_RELEASE
     puts "you are running a release which din't landed as stable yet - see changelog (TODO create a changelog)"
 
-    include SSHUtils
-    sshCmd = SSHUtils::SSHCmd
-
-    sshCmd = -> {
-      #...
-    }
-
+    setupDockerSwarm = SetupDockerSwarm::Setup
     setupDockerSwarm.()
   end
 
