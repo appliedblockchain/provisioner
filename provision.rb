@@ -60,7 +60,7 @@ end
 
 include Provisioning
 
-MAIN = -> {
+PROVISION = -> {
   puts "provisioning starting..."
   install_packages()
   install_docker()
@@ -72,9 +72,17 @@ REPORT_STATUS = -> {
   puts "infra provisioning went ok!"
 }
 
-# run pre-requisites
-PREREQS.()
 
+MAIN = -> {
+  # run pre-requisites
+  PREREQS.()
+
+  # run provisioning
+  PROVISION.()
+
+  # report status
+  REPORT_STATUS.()
+}
+
+# run everything - # TODO: pass arguments, eg. `MAIN(ip, ip2, ip3...)`
 MAIN.()
-
-REPORT_STATUS.()
