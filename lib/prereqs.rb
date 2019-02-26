@@ -3,13 +3,13 @@ module Prereqs
     if SHOW_PREREQ
       puts "prereq: "
       puts "ssh #{IP_A}"
-      puts "ssh #{IP_B}\n"
+      puts "ssh #{IP_B}\n" if defined?(IP_B)
 
       puts "ssh config: (esshconfig)"
       puts "
     Host #{IP_A}
       User root
-    Host #{IP_B}
+    Host #{IP_B if defined?(IP_B)}
       User root
       "
     end

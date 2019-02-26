@@ -17,7 +17,7 @@ module SetupDockerSwarm
 
     status = sshCmd.(IP_A, "docker swarm init")
     joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token  manager")
-    joinResponse = sshCmd.(IP_B, joinTokenCommand)
+    joinResponse = sshCmd.(IP_B, joinTokenCommand, open3: true)
 
     reportStatus status: status, joinToken: joinTokenCommand, joinResponse: joinResponse
   }
