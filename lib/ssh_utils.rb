@@ -8,8 +8,9 @@ module SSHUtils
     exe "ssh -t #{IP_CURR} \"#{cmd}\""
   end
 
-  SSHCmd = -> (ip, cmd) {
-    exe "ssh -t #{ip} \"#{cmd}\""
+  SSHCmd = -> (ip, cmd, open3) {
+    open3 = !!(open3 == :open3)
+    exe "ssh -t #{ip} \"#{cmd}\"", open3: open3
   }
 
   def ssh_exe_user(cmd, user: "ubuntu")
