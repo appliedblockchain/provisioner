@@ -39,4 +39,26 @@ Size `PROD/staging` envs (`staging`, `prod`, `beta`, `pentest`, `perftest`):
     LB VM: 1 GB RAM, 1 vCPU, 40 GB SSD (5$ / mo) [or higher]
 
 
+### 1B) Allow traffic on HTTPS for the load balancer
+
+Select your load balancer VM
+
+Go to the Networking section / tab
+
+Add a new firewall security rule to allow HTTPS traffic in.
+
+```
+Application: | Protocol: | Port range:
+HTTPS        | TCP       | 443
+```
+
 ### 2) Update provisioner config
+
+run `./publish.sh` from  `deployer`
+
+```
+cd ~/tmp && git clone git@github.com:appliedblockchain/deployer && cd deployer && git pull origin master && ./publish.sh
+```
+
+
+TODO: complete documentation
