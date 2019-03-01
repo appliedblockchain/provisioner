@@ -12,12 +12,13 @@ module SetupDockerSwarm
 
   Setup = -> {
     sshCmd = SSHUtils::SSHCmd
-    status = sshCmd.(IP_A, "docker node ls")
-    puts "Swarm status"
+    status = sshCmd.(IP_A, "docker node ls", nil)
 
-    status = sshCmd.(IP_A, "docker swarm init")
-    joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token  manager")
     return unless defined?(IP_B)
+    puts "Swarm status: #{status}"
+
+    status = sshCmd.(IP_A, "docker swarm init", nil)
+    joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token  manager", nil)
     joinResponse = sshCmd.(IP_B, joinTokenCommand, :open3)
 
     reportStatus status: status, joinToken: joinTokenCommand, joinResponse: joinResponse

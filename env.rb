@@ -12,8 +12,12 @@ require_relative 'lib/setup-docker-swarm'
 # IP_B = "63.33.208.125"
 
 # Emsurge DEV (Emsurge AWS)
-IP_A = "34.240.92.1"
-IP_B = "52.215.184.197"
+# IP_A = "34.240.92.1"
+# IP_B = "52.215.184.197"
+
+# Aubit DEV (Aubit AWS)
+IP_A = "34.251.219.20"
+IP_B = "18.203.186.24"
 
 IPS = [ IP_A, IP_B ]
 
