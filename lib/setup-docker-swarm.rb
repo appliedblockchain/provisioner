@@ -1,5 +1,3 @@
-
-
 module SetupDockerSwarm
 
   include SSHUtils
@@ -9,6 +7,10 @@ module SetupDockerSwarm
     puts "Join token response: #{joinToken.inspect}\n"
     puts "Status: #{status}\n"
   end
+
+  ReportStatus = -> (status, joinToken, joinResponse) {
+    reportStatus status: status, joinToken: joinToken, joinResponse: joinResponse
+  }
 
   Setup = -> {
     sshCmd = SSHUtils::SSHCmd
@@ -21,7 +23,7 @@ module SetupDockerSwarm
     joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token  manager", nil)
     joinResponse = sshCmd.(IP_B, joinTokenCommand, :open3)
 
-    reportStatus status: status, joinToken: joinTokenCommand, joinResponse: joinResponse
+    ReportStatus.(status, joinTokenCommand, joinResponse)
   }
 
 end

@@ -1,4 +1,4 @@
-require_relative 'lib/ssh_utils'
+require_relative 'lib/utils'
 require_relative 'lib/prereqs'
 require_relative 'lib/setup-docker-swarm'
 

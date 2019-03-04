@@ -8,11 +8,6 @@ module SSHUtils
     exe "ssh -t #{IP_CURR} \"#{cmd}\""
   end
 
-  SSHCmd = -> (ip, cmd, open3) {
-    open3 = !!(open3 == :open3)
-    exe "ssh -t #{ip} \"#{cmd}\"", open3: open3
-  }
-
   def ssh_exe_user(cmd, user: "ubuntu")
     exe "ssh -t #{user}@#{IP_CURR} 'sudo -u root #{cmd}'"
   end
@@ -41,24 +36,9 @@ module SSHUtils
     threads.map &:join
   end
 
-end
-
-module SharedUtils
-
-  include SSHUtils
-
-  def exe(cmd, dir: nil, open3: false)
-    cd_cmd = "cd #{dir} && " if dir
-    cmd = "#{cd_cmd}#{cmd}"
-    puts "executing: #{cmd}"
-    unless open3
-      out = system cmd
-    else
-      out, err, st = Open3.capture3 cmd
-    end
-    puts out
-    puts "#{err}\n"
-    out
-  end
+  SSHCmd = -> (ip, cmd, open3) {
+    open3 = !!(open3 == :open3)
+    exe "ssh -t #{ip} \"#{cmd}\"", open3: open3
+  }
 
 end
