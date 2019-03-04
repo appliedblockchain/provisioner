@@ -2,7 +2,7 @@
 
 sshCmd = SSHUtils::SSHCmd
 
-sshCmdRet = (cmd) -> { sshCmd.(cmd, :open3) }
+sshCmdR = (cmd) -> { sshCmd.(cmd, :open3) }
 sshCmd = (cmd) -> { sshCmd.(cmd) }
 
 sshCmd.("cp /home/ubuntu/.ssh/authorized_keys ~/.ssh/authorized_keys")
