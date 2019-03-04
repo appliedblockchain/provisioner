@@ -1,12 +1,12 @@
 # round robin load balance between two VMs (high availability)
 upstream backend {
-   server 18.203.186.24;
-   server 34.251.219.20;
+   server <IP_1>;
+   server <IP_2>;
 }
 
 server {
   # server name
-  server_name pentest-env.abems.io;
+  server_name <SERVER_NAME>;
 
   # non https traffic disabled
   #	listen 80 default_server;
