@@ -19,7 +19,9 @@ Always use *eu-west-1* by default (Ireland)
 
 #### OS
 
-use Ubuntu 16.04 (or debian 9.5) - default settings
+use Debian 9.5 - default settings
+
+Ubuntu 16.04 optional
 
 ### Sizes
 

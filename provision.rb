@@ -1,5 +1,5 @@
 require_relative 'env'
-include SharedUtils
+include Utils
 
 # - skip everything
 # SHOW_PREREQ = false
@@ -31,7 +31,10 @@ module Provisioning
     puts "1) Install Packages"
     return puts "skipping..." unless INSTALL_PACKAGES
     base_packages = "git curl wget vim"
-    docker_packages = "apt-transport-https ca-certificates gnupg-agent software-properties-common"
+    # ubuntu
+    # docker_packages = "apt-transport-https ca-certificates gnupg-agent software-properties-common"
+    # debian
+    docker_packages = "apt-transport-https ca-certificates gnupg2 software-properties-common"
     ssh_all_exe_su "apt install -y #{base_packages} #{docker_packages}"
     puts "packages installed!"
   end
@@ -39,9 +42,11 @@ module Provisioning
   def install_docker
     puts "2) Install Docker"
     return puts "skipping..." unless INSTALL_DOCKER
-    ssh_all_exe_su "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
-    ubuntu_release = "xenial" # output of: `lsb_release -cs`
-    ssh_all_exe_su "add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu #{ubuntu_release} stable'"
+    # ssh_all_exe_su "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
+    ssh_all_exe_su "curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -"
+    # ubuntu_release = "xenial" # output of: `lsb_release -cs`
+    debian_release = "stretch" # output of: `lsb_release -cs`
+    ssh_all_exe_su "add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/debian #{debian_release} stable'"
     ssh_all_exe_su "apt -y update"
     ssh_all_exe_su "apt -y install docker-ce docker-ce-cli containerd.io"
     puts "docker installed!"
@@ -86,3 +91,4 @@ Provision = -> {
 # run everything - # TODO: pass arguments, eg. `MAIN(ip, ip2, ip3...)`
 if __FILE__ == $0
   require_relative 'cli'
+end

@@ -5,28 +5,28 @@ module SSHUtils
   # ssh utils
 
   def ssh_exe(cmd)
-    exe "ssh -t #{IP_CURR} \"#{cmd}\""
+    exe "ssh -t root@#{IP_CURR} \"#{cmd}\""
   end
 
-  def ssh_exe_user(cmd, user: "ubuntu")
+  def ssh_exe_user(cmd, user: USER)
     exe "ssh -t #{user}@#{IP_CURR} 'sudo -u root #{cmd}'"
   end
 
   def ssh_exe_out(cmd)
-    exe "ssh -t #{IP_CURR} '#{cmd}' && echo '<OK>'"
+    exe "ssh -t root@#{IP_CURR} '#{cmd}' && echo '<OK>'"
   end
 
   def ssh_all_exe_su(cmd)
     threads = []
     IPS.each do |swarm_node_ip|
       threads << Thread.new do
-        exe "ssh #{swarm_node_ip} \"#{cmd}\""
+        exe "ssh root@#{swarm_node_ip} \"#{cmd}\""
       end
     end
     threads.map &:join
   end
 
-  def ssh_all_exe_su_user(cmd, user: "ubuntu")
+  def ssh_all_exe_su_user(cmd, user: USER)
     threads = []
     IPS.each do |swarm_node_ip|
       threads << Thread.new do
@@ -38,7 +38,7 @@ module SSHUtils
 
   SSHCmd = -> (ip, cmd, open3) {
     open3 = !!(open3 == :open3)
-    exe "ssh -t #{ip} \"#{cmd}\"", open3: open3
+    exe "ssh -t root@#{ip} \"#{cmd}\"", open3: open3
   }
 
 end

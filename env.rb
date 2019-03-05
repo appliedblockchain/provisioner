@@ -2,7 +2,8 @@ require_relative 'lib/utils'
 require_relative 'lib/prereqs_lib'
 require_relative 'lib/setup-docker-swarm'
 
-require 'cli'
+USER = "admin"  # debian
+# USER = "ubuntu" # ubuntu
 
 # TODO: load config
 # TODO: parse config
@@ -18,8 +19,13 @@ require 'cli'
 # IP_B = "52.215.184.197"
 
 # Aubit DEV (Aubit AWS)
-IP_A = "34.251.219.20"
-IP_B = "18.203.186.24"
+# IP_A = "34.251.219.20"
+# IP_B = "18.203.186.24"
+
+
+# TIM DEV (AB AWS)
+IP_A = "34.253.184.70"
+IP_B = "34.241.254.136"
 
 IPS = [ IP_A, IP_B ]
 

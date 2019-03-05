@@ -2,8 +2,8 @@ module PrereqsLib
   Prereqs = -> {
     if SHOW_PREREQ
       puts "prereq: "
-      puts "ssh ubuntu@#{IP_A}"
-      puts "ssh ubuntu@#{IP_B}\n" if defined?(IP_B)
+      puts "ssh #{USER}@#{IP_A}"
+      puts "ssh #{USER}@#{IP_B}\n" if defined?(IP_B)
 
       puts "ssh config: (esshconfig)"
       puts "
@@ -18,8 +18,7 @@ module PrereqsLib
     gets unless RC_RELEASE
 
     if SETUP_ROOT_SSH
-      user = "ubuntu"
-      ssh_all_exe_su_user "cp /home/#{user}/.ssh/authorized_keys /root/.ssh/authorized_keys"
+      ssh_all_exe_su_user "cp /home/#{USER}/.ssh/authorized_keys /root/.ssh/authorized_keys"
     end
 
     if INITIAL_APT_UPDATE

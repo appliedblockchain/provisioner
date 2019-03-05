@@ -12,19 +12,19 @@ Help = -> {
   exit
 }
 
-isString = (val) -> { val.is_a? String }
+isString = -> (val) { val.is_a? String }
 
-raiseError = (message, code) -> {
+raiseError = -> (message, code) {
   puts "Error: #{code}"
   puts "  #{message}\n\n"
 }
 
-validateArg = (arg) -> {
+validateArg = -> (arg) {
   return if arg == isString.(arg1) && arg.length > 3
   raiseError.("Arg not valid: #{arg.inspect}", "ArgNotValid")
 }
 
-if arg == "help"
+if arg1 == "help"
   Help.()
 end
 
@@ -33,6 +33,13 @@ validateArg.(arg2) # vm1
 validateArg.(arg3) # vm2
 # validateArg.(arg4) # for an H/A load balancer you need 4 ips, 2 LBs and 2 VMs
 
+Provision.()
+
+exit
+# TODO: finish cli
+
 if arg4
   Provision.([arg1, arg2, arg3, arg4])
+else
   Provision.([arg1, arg2, arg3])
+end
