@@ -4,8 +4,9 @@ Bundler.require :default
 
 R = Redis.new
 
-ACCESS_TOKEN = ENV["DNSIMPLE_ACCESS_TOKEN"]
-ACCOUNT_ID = 1447 # makevoid
+ACCESS_TOKEN = ENV["DNSIMPLE_TOKEN"]
+# ACCOUNT_ID = 1447 # makevoid
+ACCOUNT_ID = 54212 # appliedblockchain
 
 class AccessTokenNotSet < StandardError; end
 
@@ -21,9 +22,12 @@ Minutes = -> { 60 }
 
 CACHE_TIME = 6 * Minutes.()
 
+CACHE_OFF = true
+
 # R.flushdb
 
 def cache(*keys, &block)
+  return block.call if CACHE_OFF
   cache_key = keys.map{ |key| key.to_s }.join "_"
   if value = R.get(cache_key)
     value = YAML.load value
@@ -72,7 +76,8 @@ for domain in domains
     # puts "  #{record.inspect}\n"
     name = record.name
     name = "." if record.name == ""
-    puts "  #{record.type} - #{name} ⇒ #{record.content}\n"
+    type = record.type.ljust 3, ' '
+    puts "  #{type} - #{name} ⇒ #{record.content}\n"
   end
   puts "\n"
   exit

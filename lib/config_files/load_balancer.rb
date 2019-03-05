@@ -11,7 +11,7 @@ module LoadBalancerConfig
     Replace.(template, "SERVER_NAME", serverName)
   }
 
-  Main = -> (path) {
+  LoadLBConfig = -> (path) {
     serverName = "antani.com"
     ip1 = "127.0.0.1"
     ip2 = "127.0.1.1"
@@ -29,5 +29,5 @@ end
 
 if __FILE__ == $0
   include LoadBalancerConfig
-  puts Main.("templates/01-default-lb")
+  puts LoadLBConfig.("templates/01-default-lb")
 end
