@@ -18,7 +18,7 @@ INSTALL_DOCKER = true
 # release type
 RC_RELEASE = true
 
-include Prereqs
+include PrereqsLib
 include SetupDockerSwarm
 
 # for session tasks:
@@ -60,7 +60,7 @@ end
 
 include Provisioning
 
-PROVISION = -> {
+RunProvision = -> {
   puts "provisioning starting..."
   install_packages()
   install_docker()
@@ -68,21 +68,21 @@ PROVISION = -> {
   puts "provisioning ended"
 }
 
-REPORT_STATUS = -> {
+ReportStatus = -> {
   puts "infra provisioning went ok!"
 }
 
-
-MAIN = -> {
+Provision = -> {
   # run pre-requisites
-  PREREQS.()
+  Prereqs.()
 
   # run provisioning
-  PROVISION.()
+  RunProvision.()
 
   # report status
-  REPORT_STATUS.()
+  ReportStatus.()
 }
 
 # run everything - # TODO: pass arguments, eg. `MAIN(ip, ip2, ip3...)`
-MAIN.()
+if __FILE__ == $0
+  require_relative 'cli'

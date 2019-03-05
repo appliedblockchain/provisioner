@@ -1,5 +1,5 @@
-module Prereqs
-  PREREQS = -> {
+module PrereqsLib
+  Prereqs = -> {
     if SHOW_PREREQ
       puts "prereq: "
       puts "ssh ubuntu@#{IP_A}"
