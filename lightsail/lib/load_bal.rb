@@ -6,7 +6,7 @@ module LoadBal
   ENV_DEFAULT = defined?(VM_ENV) ? VM_ENV : "dev"
 
   def deploy_load_bal(stack_name, env: ENV_DEFAULT)
-    tags = load_balancer_tags stack_name: stack_name, env: env, type: type
+    tags = load_balancer_tags stack_name: stack_name, env: env
 
     begin
       resp = LS.create_load_balancer({
