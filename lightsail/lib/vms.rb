@@ -13,7 +13,7 @@ module VMs
         end
         availability_zone: "eu-west-1#{avail_zone}", # required 
         blueprint_id: "debian_9_5", # (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
-        bundle_id: "micro_1_0", # lightsail instance sizes: 
+        bundle_id: "micro_1_0", # lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
         # user_data: "string", # apt-get -y update
         key_pair_name: "makevoid",
         tags: [
