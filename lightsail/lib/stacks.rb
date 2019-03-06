@@ -3,9 +3,6 @@ module Stacks
   def deploy_stack(stack_name:)
     puts "Deploying stack - #{stack_name}"
     tasks = []
-    # tasks << Thread.new do
-    #   deploy_vm "#{stack_name}-lb", type: "load-balancer"
-    # end
     tasks << Thread.new do
       deploy_vm "#{stack_name}1"
     end
@@ -29,9 +26,6 @@ module Stacks
     gets
     puts "deleting..."
     tasks = []
-    # tasks << Thread.new do
-    #   delete_vm name: "#{stack_name}-lb", prompt: false
-    # end
     tasks << Thread.new do
       delete_vm name: "#{stack_name}1", prompt: false
     end
