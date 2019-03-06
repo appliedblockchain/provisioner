@@ -15,7 +15,7 @@ module LoadBal
         health_check_path: HEALTHCHECK_PATH,
         certificate_name: "ab-dev",
         certificate_domain_name: "appb.ch",
-        certificate_alternative_names: ["ab-dev-cert", "ab-temporary-cert"],
+        certificate_alternative_names: ["subdomain.appb.ch"],
         tags: tags,
       })
     # TODO: rescue already created
