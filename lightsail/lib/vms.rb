@@ -1,13 +1,15 @@
 module VMs
 
-  def deploy_vm(name, env: (defined?(VM_ENV) ? VM_ENV : "dev"), type: "docker-node")
+  ENV_DEFAULT = defined?(VM_ENV) ? VM_ENV : "dev"
+
+  def deploy_vm(name, env: ENV_DEFAULT, type: "docker-node")
     avail_zone = if defined?(CURRENT_AVAIL_ZONE)
       Object.send :remove_const, "CURRENT_AVAIL_ZONE"
       "a" # AZ A
     else
       "b" # AZ B
     end
-    
+
     begin
       resp = LS.create_instances({
         instance_names: [name], # required
@@ -21,16 +23,24 @@ module VMs
         key_pair_name: "makevoid",
         tags: [
           {
+            key: "Name",
+            value: name,
+          },
+          {
+            key: "stack",
+            value: name,
+          },
+          {
             key: "env",
             value: env,
           },
           {
-            key: "stack",
-            value: "docker-swarm",
-          },
-          {
             key: "type",
             value: type,
+          },
+          {
+            key: "stack-type",
+            value: "docker-swarm",
           },
         ],
       })
@@ -41,7 +51,6 @@ module VMs
     puts "VM Deployment - #{name.inspect}"
     puts "Result:"
     puts "#{resp}\n"
-    # puts resp.inspect
   end
 
   def vms
