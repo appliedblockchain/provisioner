@@ -1,19 +1,22 @@
 module VMs
 
   def deploy_vm(name, env: (defined?(VM_ENV) ? VM_ENV : "dev"), type: "docker-node")
+    avail_zone = if defined?(CURRENT_AVAIL_ZONE)
+      Object.send :remove_const, "CURRENT_AVAIL_ZONE"
+      "a" # AZ A
+    else
+      "b" # AZ B
+    end
+    
     begin
       resp = LS.create_instances({
         instance_names: [name], # required
-        # TODO: change availability zone 
-        avail_zone = if defined?(CURRENT_AVAIL_ZONE)
-          Object.send :remove_const, "CURRENT_AVAIL_ZONE" 
-          "a" # AZ A
-        else
-          "b" # AZ B
-        end
-        availability_zone: "eu-west-1#{avail_zone}", # required 
-        blueprint_id: "debian_9_5", # (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
-        bundle_id: "medium_2_0", # lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
+        # TODO: change availability zone
+        availability_zone: "eu-west-1#{avail_zone}", # required
+        # blueprint_id "debian_9_5" (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
+        blueprint_id: "debian_9_5",
+        # "bundle_id" - lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
+        bundle_id: "medium_2_0",
         # user_data: "string", # apt-get -y update
         key_pair_name: "makevoid",
         tags: [
