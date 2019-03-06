@@ -18,7 +18,7 @@ module Stacks
     end
     tasks.map &:join
 
-    deploy_load_bal
+    deploy_load_bal stack_name
 
     puts "VMs created!"
   end
