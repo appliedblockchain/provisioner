@@ -10,3 +10,7 @@ INTERACTIVE = true
 #
 # VM_ENV = "staging"
 # VM_ENV = "prod"
+
+
+# remove globals (TODO FIXME)
+CURRENT_AVAIL_ZONE = "a"
