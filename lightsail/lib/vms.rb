@@ -4,9 +4,16 @@ module VMs
     begin
       resp = LS.create_instances({
         instance_names: [name], # required
-        availability_zone: "eu-west-1a", # required
-        blueprint_id: "debian_9_5", # ubuntu: ubuntu_16_04_2, ubuntu_18_04
-        bundle_id: "micro_1_0",
+        # TODO: change availability zone 
+        avail_zone = if defined?(CURRENT_AVAIL_ZONE)
+          Object.send :remove_const, "CURRENT_AVAIL_ZONE" 
+          "a" # AZ A
+        else
+          "b" # AZ B
+        end
+        availability_zone: "eu-west-1#{avail_zone}", # required 
+        blueprint_id: "debian_9_5", # (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
+        bundle_id: "micro_1_0", # lightsail instance sizes: 
         # user_data: "string", # apt-get -y update
         key_pair_name: "makevoid",
         tags: [
