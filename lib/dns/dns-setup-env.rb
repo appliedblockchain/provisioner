@@ -12,10 +12,10 @@ class AccessTokenNotSet < StandardError; end
 
 raise AccessTokenNotSet, "The Access Token is not currently set" unless ACCESS_TOKEN
 
-client = Dnsimple::Client.new access_token: ACCESS_TOKEN
+DNS = Dnsimple::Client.new access_token: ACCESS_TOKEN
 
-# resp = (client.domains.methods - Object.methods).sort
-# client.domains.list(1447)
+# resp = (DNS.domains.methods - Object.methods).sort
+# DNS.domains.list(1447)
 # puts resp
 
 Minutes = -> { 60 }

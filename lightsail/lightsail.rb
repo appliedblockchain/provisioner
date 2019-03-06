@@ -4,16 +4,29 @@ require_relative 'env'
 puts "TODO: ask for vm size"
 # gets
 
-stack_name = "tim2"
+# conf
+# ---
 
-vms_list
+STACK_NAME_DEFAULT = "tim2"
 
-# deploy_vm "test"
+CMD_DEFAULT = "delete"
+CMD_DEFAULT = "deploy"
 
-# delete_vm name: "test"
+# ---
 
-# delete_stack stack_name: stack_name
-#
+STACK_NAME = ENV["STACK"] || STACK_NAME_DEFAULT
+CMD = ENV["CMD"] || CMD_DEFAULT
+
+# LIST
+# ---
+vms_list if CMD == "list"
+
+# DELETE STACK
+# ---
+delete_stack stack_name: STACK_NAME if CMD == "delete"
+
 # exit
-#
-deploy_stack stack_name: stack_name
+
+# DEPLOY STACK
+# ---
+deploy_stack stack_name: STACK_NAME if CMD == "deploy"

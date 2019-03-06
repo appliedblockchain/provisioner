@@ -2,19 +2,19 @@ require_relative 'dns-env'
 
 Domains = -> {
   cache(:domains) {
-    client.domains.all_domains(ACCOUNT_ID).data
+    DNS.domains.all_domains(ACCOUNT_ID).data
   }
 }
 
 Zones = -> () {
   cache(:zones) {
-    client.zones.all_zones(ACCOUNT_ID).data
+    DNS.zones.all_zones(ACCOUNT_ID).data
   }
 }
 
 Records = -> (domain) {
   cache(:records, domain) {
-    client.zones.all_zone_records(ACCOUNT_ID, domain).data
+    DNS.zones.all_zone_records(ACCOUNT_ID, domain).data
   }
 }
 
@@ -45,7 +45,7 @@ ListAll = -> {
 
 CreateRecord = -> (domain, type, name, content) {
   puts "Create Record: domain: #{domain.inspect}, type: #{type.inspect}, name: #{name.inspect}, content: #{content.inspect}"
-  resp = client.zones.create_zone_record(ACCOUNT_ID, domain, name: name, type: type, content: content)
+  resp = DNS.zones.create_zone_record(ACCOUNT_ID, domain, name: name, type: type, content: content)
   puts resp.inspect
   puts "created!"
 }

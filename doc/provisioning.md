@@ -2,16 +2,34 @@
 
 ### Steps
 
-##### 1 - Create VMs in Lightsail
+##### 1 - Create VMs and Load balancer via provisioner/lightsail  (AWS Lightsail)
 
+AUTOMATED GUIDE - NEW!
+
+1) Prepare:
+
+    cd lightsail && bundle  
+
+Configure env.rb or pass the required parameters (`stack_name`)
+
+2) Create VMs and load balancer - RUN!:
+
+    rake
+
+3) Access lightsail gui and double check
+
+
+TODO: run infra checker
 
 ---
+
+OLD manual guide
 
 ### 1)  Create VMs in Lightsail
 
 #### Create 1 load balancer VMs and 2 docker swarm VMs on AWS Lightsail or equivalent for Azure
 
-Create the 3 VMs from the UI, use these details:
+Create the 2 VMs from the UI, use these details:
 
 #### Region
 

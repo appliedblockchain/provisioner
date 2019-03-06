@@ -4,12 +4,22 @@ module Stacks
     puts "Deploying stack - #{stack_name}"
     tasks = []
     tasks << Thread.new do
-      deploy_vm "#{stack_name}-1"
+      vm = "#{stack_name}-1"
+      deploy_vm vm
+      puts "your instances will be ready in ~20s, please wait ~1m for the networking rules to be applied"
+      sleep 40
+      open_ports vm
     end
     tasks << Thread.new do
-      deploy_vm "#{stack_name}-2"
+      vm = "#{stack_name}-2"
+      deploy_vm vm
+      sleep 40
+      open_ports vm
     end
     tasks.map &:join
+
+    deploy_load_bal
+
     puts "VMs created!"
   end
 

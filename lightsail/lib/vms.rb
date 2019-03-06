@@ -10,6 +10,8 @@ module VMs
       "b" # AZ B
     end
 
+    tags = virtual_machine_tags(name: name, env: env, type: type)
+
     begin
       resp = LS.create_instances({
         instance_names: [name], # required
@@ -21,28 +23,8 @@ module VMs
         bundle_id: "medium_2_0",
         # user_data: "string", # apt-get -y update
         key_pair_name: "makevoid",
-        tags: [
-          {
-            key: "Name",
-            value: name,
-          },
-          {
-            key: "stack",
-            value: name,
-          },
-          {
-            key: "env",
-            value: env,
-          },
-          {
-            key: "type",
-            value: type,
-          },
-          {
-            key: "stack-type",
-            value: "docker-swarm",
-          },
-        ],
+        # TODO: refactor tags - de-duplicate LB/VMs
+        tags: tags,
       })
     rescue Aws::Lightsail::Errors::InvalidInputException => err
       error_and_exit message: "VM probably already exists", error: err
@@ -89,6 +71,31 @@ module VMs
 
     puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
     # puts resp.inspect
+  end
+
+  def virtual_machine_tags(name:, env:, type:)
+    [
+      {
+        key: "Name",
+        value: name,
+      },
+      {
+        key: "stack",
+        value: name,
+      },
+      {
+        key: "env",
+        value: env,
+      },
+      {
+        key: "type",
+        value: type,
+      },
+      {
+        key: "stack-type",
+        value: "docker-swarm",
+      },
+    ]
   end
 
 end
