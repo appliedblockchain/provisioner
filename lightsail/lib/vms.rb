@@ -22,7 +22,7 @@ module VMs
         # "bundle_id" - lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
         bundle_id: "medium_2_0",
         # user_data: "string", # apt-get -y update
-        key_pair_name: "makevoid",
+        key_pair_name: KEY_PAIR_NAME,
         # TODO: refactor tags - de-duplicate LB/VMs
         tags: tags,
       })
@@ -30,9 +30,10 @@ module VMs
       error_and_exit message: "VM probably already exists", error: err
     end
 
-    puts "VM Deployment - #{name.inspect}"
-    puts "Result:"
-    puts "#{resp}\n"
+    # if DEBUG TODO imrpove logging
+    # puts "Result:"
+    # puts "#{resp}\n"
+    puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
   end
 
   def vms

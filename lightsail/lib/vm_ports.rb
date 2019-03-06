@@ -5,9 +5,9 @@ module VMPorts
     "2377": :tcp, # docker swarm - communication between the nodes
     "3000": :tcp, # app
     "4789": :udp, # docker swarm - overlay network traffic (container ingress networking)
-    "7946": :tcp, # docker swarm - container network discovery
-    "7946": :udp, # "
-    # "7946": :all, # docker swarm - container network discovery
+    # "7946": :tcp, # docker swarm - container network discovery
+    # "7946": :udp, # "
+    "7946": :all, # docker swarm - container network discovery
     "9000": :tcp, # explorer
   }
 
@@ -15,31 +15,45 @@ module VMPorts
 
     ports_definition.each do |port, proto|
       port  = port.to_s
-      proto = proto.to_s
 
-      sleep 3
+      sleep 6 # unpredictable if aws lags this could fail :D, FIXME
+      sleep 0.5 if instance[-1] == "2" # note: hack
       puts "opening #{port} - #{proto} on #{instance}"
 
-      retried = false
-      begin
-        resp = LS.open_instance_public_ports({
-          instance_name: instance,
-          port_info: {
-            from_port:  port,
-            to_port:    port,
-            protocol:   proto,
-          },
-        })
-      rescue Aws::Lightsail::Errors::InvalidInputException => err
-        raise err
-        unless retried
-          puts "rertying - port #{port} - #{proto} on #{instance}"
-          sleep 10
-          retried = true
-          retry
-        end
+      if proto == :all
+        open_port instance: instance, port: port, proto: :tcp
+        open_port instance: instance, port: port, proto: :udp
+      else
+        open_port instance: instance, port: port, proto: proto
       end
     end
+  end
+
+  def open_port(instance:, port:, proto:)
+    retried = false
+    begin
+      proto = proto.to_s
+      resp = LS.open_instance_public_ports({
+        instance_name: instance,
+        port_info: {
+          from_port:  port,
+          to_port:    port,
+          protocol:   proto,
+        },
+      })
+    rescue Aws::Lightsail::Errors::InvalidInputException => err
+      raise err
+      unless retried
+        open_ports_retry_before_hook # note: slow
+        retried = true
+        retry
+      end
+    end
+  end
+
+  def open_ports_retry_before_hook
+    puts "rertying - port #{port} - #{proto} on #{instance}"
+    sleep 20
   end
 
 end

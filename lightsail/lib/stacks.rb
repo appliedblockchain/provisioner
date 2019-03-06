@@ -31,7 +31,7 @@ module Stacks
     # select by tag env
 
     puts "Deleting stack - #{stack_name}"
-    puts "This will delete 3 VMs!"
+    puts "This will delete 2 VMs and 1 Load Balancer!"
     puts "Are you sure? Hit Ctrl-C to terminate!"
     gets
     puts "deleting..."
