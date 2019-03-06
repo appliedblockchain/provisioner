@@ -4,7 +4,7 @@ require_relative 'env'
 puts "TODO: ask for vm size"
 # gets
 
-stack_name = "tim"
+stack_name = "tim2"
 
 vms_list
 

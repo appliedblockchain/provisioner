@@ -4,10 +4,10 @@ module Stacks
     puts "Deploying stack - #{stack_name}"
     tasks = []
     tasks << Thread.new do
-      deploy_vm "#{stack_name}1"
+      deploy_vm "#{stack_name}-1"
     end
     tasks << Thread.new do
-      deploy_vm "#{stack_name}2"
+      deploy_vm "#{stack_name}-2"
     end
     tasks.map &:join
     puts "VMs created!"
@@ -27,10 +27,10 @@ module Stacks
     puts "deleting..."
     tasks = []
     tasks << Thread.new do
-      delete_vm name: "#{stack_name}1", prompt: false
+      delete_vm name: "#{stack_name}-1", prompt: false
     end
     tasks << Thread.new do
-      delete_vm name: "#{stack_name}2", prompt: false
+      delete_vm name: "#{stack_name}-2", prompt: false
     end
     tasks.map &:join
     puts "VMs deleted!"
