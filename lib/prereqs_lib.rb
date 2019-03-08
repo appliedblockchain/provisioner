@@ -1,17 +1,11 @@
 module PrereqsLib
   Prereqs = -> {
     if SHOW_PREREQ
-      puts "prereq: "
+      # TODO: add ssh keys so there's no manual step required
+      puts "prerequisite: "
       puts "ssh #{USER}@#{IP_A}"
       puts "ssh #{USER}@#{IP_B}\n" if defined?(IP_B)
-
-      puts "ssh config: (esshconfig)"
-      puts "
-    Host #{IP_A}
-      User root
-    Host #{IP_B if defined?(IP_B)}
-      User root
-      "
+      puts "\n\n"
     end
 
     puts "Press any key to proceed or 'Ctrl-C' to abort..."

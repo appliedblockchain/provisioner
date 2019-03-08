@@ -6,6 +6,7 @@ module LoadBal
   ENV_DEFAULT = defined?(VM_ENV) ? VM_ENV : "dev"
 
   def deploy_load_bal(stack_name, env: ENV_DEFAULT)
+    puts "LB Deployment - #{stack_name.inspect}"
     tags = load_balancer_tags stack_name: stack_name, env: env
 
     begin
@@ -23,7 +24,6 @@ module LoadBal
       raise err
     end
 
-    puts "VM Deployment - #{name.inspect}"
     # if DEBUG TODO imrpove logging
     # puts "Result:"
     # puts "#{resp}\n"

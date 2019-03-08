@@ -7,8 +7,8 @@ puts "TODO: ask for vm size"
 # conf
 # ---
 
-# STACK_NAME_DEFAULT = "launchpad"
-STACK_NAME_DEFAULT = "tim2" unless defined? STACK_NAME_DEFAULT
+STACK_NAME_DEFAULT = "launchpad"
+STACK_NAME_DEFAULT = "test" unless defined? STACK_NAME_DEFAULT
 
 # VM_SIZE_DEFAULT - the size of the VM, medium is good, 2 hyperthreads
 

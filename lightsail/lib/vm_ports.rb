@@ -16,8 +16,8 @@ module VMPorts
     ports_definition.each do |port, proto|
       port  = port.to_s
 
-      sleep 6 # unpredictable if aws lags this could fail :D, FIXME
-      sleep 0.5 if instance[-1] == "2" # note: hack
+      sleep 8 # unpredictable if aws lags this could fail :D, FIXME
+      sleep 4 if instance[-1] == "2" # note: hack
       puts "opening #{port} - #{proto} on #{instance}"
 
       if proto == :all
