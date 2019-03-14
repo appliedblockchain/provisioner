@@ -22,5 +22,10 @@ include VMPorts
 include LoadBal
 include Stacks
 
+Aws.config.update({
+  region: 'eu-west-1',
+  credentials: Aws::SharedCredentials.new(profile_name: AWS_PROFILE_NAME)
+})
+
 # uses the aws-cli credentials
 LS = Aws::Lightsail::Client.new

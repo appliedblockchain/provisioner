@@ -53,7 +53,7 @@ module VMPorts
 
   def open_ports_retry_before_hook
     puts "rertying - port #{port} - #{proto} on #{instance}"
-    sleep 20
+    sleep 30
   end
 
 end

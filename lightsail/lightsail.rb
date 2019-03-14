@@ -7,7 +7,7 @@ puts "TODO: ask for vm size"
 # conf
 # ---
 
-STACK_NAME_DEFAULT = "launchpad"
+STACK_NAME_DEFAULT = "launchpad" unless defined? STACK_NAME_DEFAULT
 STACK_NAME_DEFAULT = "test" unless defined? STACK_NAME_DEFAULT
 
 # VM_SIZE_DEFAULT - the size of the VM, medium is good, 2 hyperthreads
@@ -38,6 +38,8 @@ CMD_DEFAULT = "and-deplot" unless defined? CMD_DEFAULT
 
 STACK_NAME = ENV["STACK"] || STACK_NAME_DEFAULT
 CMD = ENV["CMD"] || CMD_DEFAULT
+
+CURRENT_AVAIL_ZONE = "a"
 
 # LIST
 # ---
