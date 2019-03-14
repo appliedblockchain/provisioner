@@ -10,14 +10,6 @@ USER = "admin"  # debian
 
 # note: at the moment the configs are inline
 
-# Emsurge Pentest (AB AWS)
-# IP_A = "34.245.131.197"
-# IP_B = "63.33.208.125"
-
-# Emsurge DEV (Emsurge AWS)
-# IP_A = "34.240.92.1"
-# IP_B = "52.215.184.197"
-
 # Aubit DEV (Aubit AWS)
 # IP_A = "34.251.219.20"
 # IP_B = "18.203.186.24"
@@ -39,8 +31,17 @@ USER = "admin"  # debian
 # IP_B = "34.253.11.126"
 
 # Temporary VMs
-IP_A = "134.209.80.168"
-IP_B = "134.209.95.216"
+# IP_A = "134.209.80.168"
+# IP_B = "134.209.95.216"
+
+# Emsurge DEV (Emsurge AWS)
+# IP_A = "34.242.248.101"
+# IP_B = "34.242.8.238"
+
+# Emsurge PROD (Emsurge AWS)
+IP_A = "63.35.235.243"
+IP_B = "34.242.38.215"
+
 
 IPS = [ IP_A, IP_B ]
 
