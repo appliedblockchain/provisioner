@@ -35,8 +35,12 @@ USER = "admin"  # debian
 # IP_B = "176.34.158.169"
 
 # Launchpad (AB AWS)
-IP_A = "63.33.60.147"
-IP_B = "34.253.11.126"
+# IP_A = "63.33.60.147"
+# IP_B = "34.253.11.126"
+
+# Temporary VMs
+IP_A = "134.209.80.168"
+IP_B = "134.209.95.216"
 
 IPS = [ IP_A, IP_B ]
 
