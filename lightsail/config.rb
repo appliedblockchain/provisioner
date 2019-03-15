@@ -3,7 +3,7 @@
 # AWS_PROFILE_NAME
 # ---
 #
-# AWS_PROFILE_NAME = "default"
+AWS_PROFILE_NAME = "default"
 # AWS_PROFILE_NAME = "emsurge"
 
 # KEY_PAIR_NAME
