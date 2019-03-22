@@ -5,4 +5,9 @@ require_relative 'lib/setup-docker-swarm'
 USER = "admin"  # debian
 # USER = "ubuntu" # ubuntu
 
+IP_A = ENV["IP_A"] || ENV["IP"]
+IP_B = ENV["IP_B"]
+
+raise "IP not found, please specify the two required IP_A, IP_B env vars or at least one (IP or IP_A)" unless IP_A
+
 IPS = [ IP_A, IP_B ]

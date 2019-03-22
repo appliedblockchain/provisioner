@@ -1,6 +1,6 @@
 arg1 = ARGV[0]
 arg2 = ARGV[1]
-arg3 = ARGV[1]
+arg3 = ARGV[2]
 
 # CLI specfic
 
@@ -32,9 +32,9 @@ if arg1 == "help"
   Help.()
 end
 
-validateArg.(arg1) # load balancer
-validateArg.(arg2) # vm1
-validateArg.(arg3) # vm2
+# validateArg.(arg1) # load balancer
+# validateArg.(arg2) # vm1
+# validateArg.(arg3) # vm2
 # validateArg.(arg4) # for an H/A load balancer you need 4 ips, 2 LBs and 2 VMs
 
 Provision.()
