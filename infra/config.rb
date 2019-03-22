@@ -3,7 +3,7 @@
 # AWS_PROFILE_NAME
 # ---
 #
-AWS_PROFILE_NAME = "default"
+AWS_PROFILE_NAME = ENV["AWS_PROFILE_NAME"] || "default"
 # AWS_PROFILE_NAME = "emsurge"
 
 # KEY_PAIR_NAME
@@ -13,7 +13,7 @@ AWS_PROFILE_NAME = "default"
 # KEY_PAIR_NAME = "youruser"
 
 #current
-KEY_PAIR_NAME = "makevoid"
+KEY_PAIR_NAME = ENV["KEY_PAIR_NAME"] || "makevoid"
 
 # ---
 
@@ -33,7 +33,7 @@ INTERACTIVE = true
 # development
 # ---
 
-STACK_NAME_DEFAULT = "launchpad2"
+STACK_NAME_DEFAULT = ENV["STACK"] || "launchpad2"
 
 
 # production
@@ -43,7 +43,7 @@ STACK_NAME_DEFAULT = "launchpad2"
 #
 # STACK_NAME_DEFAULT = "emsurge-prod"
 #
-# VM_SIZE_DEFAULT = "big"
+# VM_SIZE = "big"
 
 
 # ---

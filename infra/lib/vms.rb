@@ -19,8 +19,7 @@ module VMs
         availability_zone: "eu-west-1#{avail_zone}", # required
         # blueprint_id "debian_9_5" (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
         blueprint_id: "debian_9_5",
-        # "bundle_id" - lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
-        bundle_id: "medium_2_0",
+        bundle_id: vm_size_bundle_id,
         # user_data: "string", # apt-get -y update
         key_pair_name: KEY_PAIR_NAME,
         # TODO: refactor tags - de-duplicate LB/VMs
@@ -72,6 +71,15 @@ module VMs
 
     puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
     # puts resp.inspect
+  end
+
+  def vm_size_bundle_id
+    # "bundle_id" - lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
+    case VM_SIZE
+    when "medium", "default", "staging" then "medium_2_0"
+    when "big", "production" then "xlarge_2_0"
+    when "small", "dev" then "micro_2_0"
+    end
   end
 
   def virtual_machine_tags(name:, env:, type:)

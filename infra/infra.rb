@@ -8,24 +8,11 @@ puts "TODO: ask for vm size"
 # ---
 
 STACK_NAME_DEFAULT = "launchpad" unless defined? STACK_NAME_DEFAULT
-STACK_NAME_DEFAULT = "test" unless defined? STACK_NAME_DEFAULT
 
-# VM_SIZE_DEFAULT - the size of the VM, medium is good, 2 hyperthreads
+# VM_SIZE - the size of the VM, medium is good, 2 hyperthreads
 
 # good default: medium, 2vCPUs
-VM_SIZE_DEFAULT = "medium"
-
-# default with alternate name (stack size: dev=small=1core, staging=medium=2cores, production=big=4cores)
-VM_SIZE_DEFAULT = "staging" unless defined? VM_SIZE_DEFAULT
-
-# 4 h-threads (vcpus)
-VM_SIZE_DEFAULT = "big" unless defined? VM_SIZE_DEFAULT
-VM_SIZE_DEFAULT = "production" unless defined? VM_SIZE_DEFAULT
-
-# 1 h-thread (1 cpu core/hyperthread, 1 vCPU)
-VM_SIZE_DEFAULT = "small" unless defined? VM_SIZE_DEFAULT
-VM_SIZE_DEFAULT = "dev" unless defined? VM_SIZE_DEFAULT
-
+VM_SIZE = "medium" unless defined? VM_SIZE
 
 # ---
 

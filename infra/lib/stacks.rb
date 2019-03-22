@@ -1,7 +1,7 @@
 module Stacks
 
   def deploy_stack(stack_name:)
-    puts "Deploying stack - #{stack_name}"
+    puts "Deploying stack - #{stack_name} - AWS: #{AWS_PROFILE_NAME} - VM size: #{VM_SIZE} - KEY: #{KEY_PAIR_NAME}"
     tasks = []
     tasks << Thread.new do
       vm = "#{stack_name}-1"
