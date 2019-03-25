@@ -18,3 +18,16 @@ deploys a single vm
 deletes a vm
 
     delete_vm name: "test"
+
+
+----
+
+```
+# current config - do everything, this config (provision.rb:L4), skips everything:
+#
+# SHOW_PREREQ = false
+# SETUP_ROOT_SSH = false
+# INITIAL_APT_UPDATE = false
+# INSTALL_PACKAGES = false
+# INSTALL_DOCKER = false
+```
