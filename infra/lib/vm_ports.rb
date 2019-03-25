@@ -3,12 +3,12 @@ module VMPorts
   PORTS_DEFINITION_DEFAULT = {
     # note: 80 and 22 are open by default
     "2377": :tcp, # docker swarm - communication between the nodes
-    "3000": :tcp, # app
     "4789": :udp, # docker swarm - overlay network traffic (container ingress networking)
     # "7946": :tcp, # docker swarm - container network discovery
     # "7946": :udp, # "
     "7946": :all, # docker swarm - container network discovery
-    "9000": :tcp, # explorer
+    # "3000": :tcp, # app
+    # "9000": :tcp, # explorer
   }
 
   def open_ports(instance, ports_definition: PORTS_DEFINITION_DEFAULT)
