@@ -22,8 +22,10 @@ include VMPorts
 include LoadBal
 include Stacks
 
+AWS_REGION = ENV["AWS_REGION"] || 'eu-west-1'
+
 Aws.config.update({
-  region: 'eu-west-1',
+  region: AWS_REGION,
   credentials: Aws::SharedCredentials.new(profile_name: AWS_PROFILE_NAME)
 })
 

@@ -16,7 +16,7 @@ module VMs
       resp = LS.create_instances({
         instance_names: [name], # required
         # TODO: change availability zone
-        availability_zone: "eu-west-1#{avail_zone}", # required
+        availability_zone: "#{AWS_REGION}#{avail_zone}", # required
         # blueprint_id "debian_9_5" (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
         blueprint_id: "debian_9_5",
         bundle_id: vm_size_bundle_id,
