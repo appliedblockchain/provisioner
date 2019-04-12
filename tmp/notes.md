@@ -25,7 +25,6 @@ deletes a vm
 ```
 # current config - do everything, this config (provision.rb:L4), skips everything:
 #
-# SHOW_PREREQ = false
 # SETUP_ROOT_SSH = false
 # INITIAL_APT_UPDATE = false
 # INSTALL_PACKAGES = false

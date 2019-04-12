@@ -16,7 +16,7 @@ module SetupDockerSwarm
     sshCmd = SSHUtils::SSHCmd
     status = sshCmd.(IP_A, "docker node ls", nil)
 
-    return unless defined?(IP_B)
+    return unless IP_B
     puts "Swarm status: #{status}"
 
     status = sshCmd.(IP_A, "docker swarm init", nil)

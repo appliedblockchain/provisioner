@@ -1,14 +1,12 @@
 require_relative 'env'
 include Utils
 
-SHOW_PREREQ = true
+CLI_RUN = ENV["CLI_RUN"] != "1"
+
 SETUP_ROOT_SSH  = true
 INITIAL_APT_UPDATE = true
 INSTALL_PACKAGES = true
 INSTALL_DOCKER = true
-
-# release type
-RC_RELEASE = true
 
 include PrereqsLib
 include SetupDockerSwarm
@@ -39,7 +37,6 @@ module Provisioning
 
   def setup_docker_swarm
     puts "3) Setup docker swarm"
-    return unless RC_RELEASE
     puts "you are running a release which din't landed as stable yet - see changelog (TODO create a changelog)"
 
     setupDockerSwarm = SetupDockerSwarm::Setup

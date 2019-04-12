@@ -32,7 +32,17 @@ module HelpCmd
     STACK=stack-name AWS_PROFILE_NAME=aws-credentials-name KEY_PAIR_NAME=your-username CMD=provision rake
 
     # protip: create an env file to source with all your credentials and then just run `source env.sh && CMD=provision rake`
-  \n\n"
+  \n\n
+-------------
+  ENV:
+-------------
+
+STACK: #{ENV["STACK"]}
+AWS_PROFILE_NAME: #{ENV["AWS_PROFILE_NAME"]}
+KEY_PAIR_NAME: #{ENV["KEY_PAIR_NAME"]}
+VM_SIZE: #{ENV["VM_SIZE"]}
+AWS_REGION: #{ENV["AWS_REGION"] || "#{AWS_REGION} (default)"}
+\n\n"
   end
 
 end
