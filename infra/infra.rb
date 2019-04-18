@@ -1,8 +1,9 @@
 require_relative 'env'
 
-# TODO: ask 4 vm-size
-puts "TODO: ask for vm size"
-# gets
+# TODO: support a non-interactive mode
+puts "\nPress any key to continue or Ctrl-C to quit.\n"
+gets
+
 
 # conf
 # ---
@@ -12,6 +13,7 @@ STACK_NAME_DEFAULT = "launchpad" unless defined? STACK_NAME_DEFAULT
 # VM_SIZE - the size of the VM, medium is good, 2 hyperthreads
 
 # good default: medium, 2vCPUs
+VM_SIZE = ENV["VM_SIZE"] if ENV["VM_SIZE"] && ENV["VM_SIZE"] != ""
 VM_SIZE = "medium" unless defined? VM_SIZE
 
 # ---
