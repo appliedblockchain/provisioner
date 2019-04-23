@@ -1,10 +1,5 @@
 require_relative 'env'
 
-# TODO: support a non-interactive mode
-puts "\nPress any key to continue or Ctrl-C to quit.\n"
-gets
-
-
 # conf
 # ---
 
@@ -45,7 +40,13 @@ delete_stack stack_name: STACK_NAME if CMD == "destroy"
 #   Provision a new Stack (#provisioning, #infra_deployment)
 #
 # ---
-deploy_stack stack_name: STACK_NAME if %w(provision deploy).include? CMD
+if %w(provision deploy).include? CMD
+  # TODO: support a non-interactive mode
+  puts "\nPress any key to continue or Ctrl-C to quit.\n"
+  gets
+
+  deploy_stack stack_name: STACK_NAME
+end
 
 # TODO: remove this
 if CMD == "destroy-and-provision"
