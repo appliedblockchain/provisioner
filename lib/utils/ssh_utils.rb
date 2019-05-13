@@ -2,8 +2,6 @@ require 'open3'
 
 module SSHUtils
 
-  # ssh utils
-
   def ssh_exe(cmd)
     exe "ssh -t root@#{IP_CURR} \"#{cmd}\""
   end
