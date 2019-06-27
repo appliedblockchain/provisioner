@@ -5,8 +5,7 @@ Bundler.require :default
 R = Redis.new
 
 ACCESS_TOKEN = ENV["DNSIMPLE_TOKEN"]
-# ACCOUNT_ID = 1447 # makevoid
-ACCOUNT_ID = 54212 # appliedblockchain
+ACCOUNT_ID = 54212 # ab
 
 class AccessTokenNotSet < StandardError; end
 
