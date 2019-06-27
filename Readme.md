@@ -2,29 +2,51 @@
 
 Docker swarm (and kubernetes) base VM provisioner
 
-Please see the full guide in the devops guides:
+## Install prerequisites
 
-#### https://app.gitbook.com/@appliedblockchain/s/devops 
+Clone the repo, then:
 
+For the Infrastructure Provisioner:
 
-Check out the section named Provisioner
+```
+cd infra
+bundle
+```
 
-(also remember that in provisioner/infra there is the infrastructure provisioner
+For the Docker Swarm Provisioner, in the main directory (`cd ..`):
 
----
+```
+bundle
+```
 
-more info on https://docs.google.com/presentation/d/1SFKvCiBauczMsDt8cX6AW0mRFbDoeSLGgRB-SjPIn04/edit#slide=id.g50664b0025_0_0
-
-
-## How it's implemented
-
-
-Provisioner details are 3, mainly 
-
-#### 1) aws-sdk rb
-#### 2) AWS Lightsail new "EC2 toolkit"
-#### 3) A simple API: Exe.( system "ssh host cmd" )
+You'll have ruby installed. 
 
 
-The provisioner configuration file is:
+## Usage - Infrastructure provisioner
+
+```
+rake
+```
+
+Will print a help usage, with command hits like this one:
+
+```
+rake STACK=stack-name AWS_PROFILE_NAME=aws-credentials-name KEY_PAIR_NAME=your-username CMD=provision
+```
+
+Which will use few defaults and provision 2x Lightsail VMs, with some standard network rules and a Lightsail Load Balancer in front.
+
+
+## Usage - Docker Swarm setup provisioning
+
+```
+rake IP_A=123.456.789.0 IP_A=234.567.89.0
+```
+
+Will set up the VMs, install docker so you will be able to run your `docker stack deploy` command and have a live docker swarm env.
+
+
+Happy Deployments,
+
+The Applied Blockchain Dev Team.
 
