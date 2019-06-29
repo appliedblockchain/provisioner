@@ -45,8 +45,9 @@ Which will use few defaults and provision 2x Lightsail VMs, with some standard n
 rake IP_A=123.456.789.0 IP_A=234.567.89.0
 ```
 
-Will set up the VMs, install docker so you will be able to run your `docker stack deploy` command and have a live docker swarm env, ready for deployment.
+Will set up the VMs, install docker so you will be able to run your `docker stack deploy` command and have a live docker swarm env, ready for deployment!
 
+---
 
 Happy Deployments,
 
