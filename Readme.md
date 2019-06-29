@@ -22,7 +22,9 @@ bundle
 You'll have ruby installed. 
 
 
-## Usage - Infrastructure provisioner
+## Usage - Infrastructure provisioner/configurator
+
+This task will provision / configure a Docker Swarm cluster for you (Debian v9, Lightsail LB)
 
 ```
 rake
