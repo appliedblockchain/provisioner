@@ -9,7 +9,7 @@ module Stacks
 
     deploy_vms stack_name: stack_name
 
-    deploy_load_bal stack_name
+    # deploy_load_bal stack_name
 
     puts "VMs created!"
   end
@@ -17,14 +17,20 @@ module Stacks
   def deploy_vms(stack_name:)
     tasks = []
     tasks << Thread.new do
-      vm = "#{stack_name}-1"
+      vm = "#{stack_name}-master"
       deploy_vm vm
       puts "your instances will be ready in ~20s, please wait ~1m for the networking rules to be applied"
       sleep 40
       open_ports vm
     end
     tasks << Thread.new do
-      vm = "#{stack_name}-2"
+      vm = "#{stack_name}-node1"
+      deploy_vm vm
+      sleep 40
+      open_ports vm
+    end
+    tasks << Thread.new do
+      vm = "#{stack_name}-node2"
       deploy_vm vm
       sleep 40
       open_ports vm
