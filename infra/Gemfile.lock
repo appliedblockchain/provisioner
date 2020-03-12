@@ -699,12 +699,14 @@ GEM
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.0.3)
     jmespath (1.4.0)
+    rake (13.0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   aws-sdk (~> 3)
+  rake
 
 BUNDLED WITH
-   2.0.1
+   2.1.4
