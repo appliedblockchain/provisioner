@@ -9,8 +9,8 @@ arg3 = ARGV[2]
 Help = -> {
   puts "AB Provisioner"
   puts "---"
-  puts "AB Provisioner provisions an H/A Load Balancer and two docker swarm instances"
-  puts "print extended help..."
+  puts "AB Provisioner provisions an H/A Load Balancer and two k3s managed kubernetes instances for a kubernetes poc/demo environment - for production env we need to swap the lightsail infra model with EC2 (for public/private networking)"
+
   puts "..."
 
   exit
