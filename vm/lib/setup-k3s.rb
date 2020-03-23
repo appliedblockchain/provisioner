@@ -1,4 +1,4 @@
-module SetupDockerSwarm
+module SetupK3S
 
   include SSHUtils
 
@@ -13,6 +13,11 @@ module SetupDockerSwarm
   }
 
   Setup = -> {
+    # use https://github.com/appliedblockchain/k3s_deploy for now
+
+    return
+    #TODO: delete
+
     sshCmd = SSHUtils::SSHCmd
     status = sshCmd.(IP_A, "docker node ls", nil)
 

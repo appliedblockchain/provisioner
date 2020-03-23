@@ -9,7 +9,7 @@ INSTALL_PACKAGES = true
 INSTALL_DOCKER = true
 
 include PrereqsLib
-include SetupDockerSwarm
+include SetupK3S
 
 IP_CURR = IP_A
 
@@ -35,12 +35,12 @@ module Provisioning
     puts "docker installed!"
   end
 
-  def setup_docker_swarm
+  def setup_k3s
     puts "3) Setup docker swarm"
     puts "you are running a release which din't landed as stable yet - see changelog (TODO create a changelog)"
 
-    setupDockerSwarm = SetupDockerSwarm::Setup
-    setupDockerSwarm.()
+    setupK3s = SetupK3S::Setup
+    setupK3s.()
   end
 
 end
@@ -51,7 +51,7 @@ RunProvision = -> {
   puts "provisioning starting..."
   install_packages()
   install_docker()
-  setup_docker_swarm()
+  setup_k3s()
   puts "provisioning ended"
 }
 
