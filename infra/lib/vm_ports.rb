@@ -10,7 +10,7 @@ module VMPorts
     ports_definition.each do |port, proto|
       port  = port.to_s
 
-      sleep 8 # unpredictable if aws lags this could fail :D, FIXME
+      sleep 8 # FIXME - await for condition (poll to check if the port is still open every 1s?)
       sleep 4 if instance[-1] == "2" # note: hack
       puts "opening #{port} - #{proto} on #{instance}"
 
