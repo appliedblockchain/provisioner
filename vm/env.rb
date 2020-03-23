@@ -2,6 +2,7 @@ require_relative 'lib/utils'
 require_relative 'lib/prereqs_lib'
 require_relative 'lib/setup-docker-swarm'
 
+
 USER = ENV["USER"] || "admin"  # debian, "ubuntu" for ubuntu
 
 IP_A = ENV["IP_A"] || ENV["IP"]
@@ -14,3 +15,5 @@ IPS = if IP_B
 else
   [ IP_A ]
 end
+
+require_relative 'config/pubkeys'
