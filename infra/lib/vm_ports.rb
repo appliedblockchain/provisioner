@@ -7,7 +7,6 @@ module VMPorts
   }
 
   def open_ports(instance, ports_definition: PORTS_DEFINITION_DEFAULT)
-
     ports_definition.each do |port, proto|
       port  = port.to_s
 
