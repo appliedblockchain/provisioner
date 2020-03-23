@@ -25,6 +25,7 @@ include LoadBal
 # TODO finish load balancing - configure ssl certs and dns record via dnsimple api
 include Stacks
 # TODO add Pods / Stateful Sets / Networks configuration ...
+# TODO add provisioning via chef
 
 AWS_REGION = ENV["AWS_REGION"] || 'eu-west-1'
 
