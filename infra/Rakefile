@@ -1,3 +1,7 @@
+# notes:
+#
+#   run via: `source env.sh && rake CMD=provision`, verify env vars and hit enter to proceed
+
 desc "Run"
 task :run do
   sh "bundle exec ruby infra.rb"
