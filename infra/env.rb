@@ -17,10 +17,14 @@ require_relative 'lib/stacks'
 
 # note: for now just include everything in the main namespace (TODO refactor)
 
+# TODO: open a branch for https://github.com/weaveworks/eksctl - EKSctl
+
 include VMs
 include VMPorts
 include LoadBal
+# TODO finish load balancing - configure ssl certs and dns record via dnsimple api
 include Stacks
+# TODO add Pods / Stateful Sets / Networks configuration ...
 
 AWS_REGION = ENV["AWS_REGION"] || 'eu-west-1'
 

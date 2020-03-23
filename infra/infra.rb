@@ -14,9 +14,9 @@ VM_SIZE = "medium" unless defined? VM_SIZE
 # ---
 
 CMD_DEFAULT = "help"
-CMD_DEFAULT = "provision" unless defined? CMD_DEFAULT
-CMD_DEFAULT = "destroy" unless defined? CMD_DEFAULT
-CMD_DEFAULT = "and-deplot" unless defined? CMD_DEFAULT
+CMD_DEFAULT = "provision"   unless defined? CMD_DEFAULT
+CMD_DEFAULT = "destroy"     unless defined? CMD_DEFAULT
+CMD_DEFAULT = "and-deplot"  unless defined? CMD_DEFAULT
 
 # ---
 
