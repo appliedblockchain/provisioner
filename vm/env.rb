@@ -2,8 +2,7 @@ require_relative 'lib/utils'
 require_relative 'lib/prereqs_lib'
 require_relative 'lib/setup-docker-swarm'
 
-USER = "admin"  # debian
-# USER = "ubuntu" # ubuntu
+USER = ENV["USER"] || "admin"  # debian, "ubuntu" for ubuntu
 
 IP_A = ENV["IP_A"] || ENV["IP"]
 IP_B = ENV["IP_B"]
