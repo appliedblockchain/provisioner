@@ -1,5 +1,5 @@
 export STACK=dev
 export AWS_PROFILE_NAME=default # make sure the default profile is the one you want to use, or change the name (check ~/.aws/credentials)
 export KEY_PAIR_NAME=makevoid # your user
-export VM_SIZE=medium
+export VM_SIZE=medium # use small if you want the minimum spend
 export AWS_REGION=eu-west-1
