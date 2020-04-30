@@ -15,34 +15,22 @@ module VMs
     begin
       resp = LS.create_instances({
         instance_names: [name], # required
-        # TODO: change availability zone
         availability_zone: "#{AWS_REGION}#{avail_zone}", # required
-        # blueprint_id "debian_9_5" (new AB stable) - for ubuntu: "ubuntu_16_04_2" (old AB stable), "ubuntu_18_04"
         blueprint_id: "debian_9_5",
         bundle_id: vm_size_bundle_id,
-        # user_data: "string", # apt-get -y update
         key_pair_name: KEY_PAIR_NAME,
-        # TODO: refactor tags - de-duplicate LB/VMs
+        # user_data: "string", # add a custom script like `apt -y update && apt -y install vim git curl ...`
         tags: tags,
       })
     rescue Aws::Lightsail::Errors::InvalidInputException => err
       error_and_exit message: "VM probably already exists", error: err
     end
 
-    # if DEBUG TODO imrpove logging
-    # puts "Result:"
-    # puts "#{resp}\n"
     puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
   end
 
   def vms
     LS.get_instances()
-
-    # TODO: use pages
-    #
-    # resp = LS.get_instances({
-    #   page_token: "string",
-    # })
   end
 
   def vms_list
@@ -50,7 +38,6 @@ module VMs
     puts "Instances:\n---"
     for instance in resp[:instances].sort_by{ |inst| inst[:name] }
       puts "Name: #{instance[:name]}"
-      # puts instance[:tags].inspect
     end
     puts
   end
@@ -70,11 +57,13 @@ module VMs
     end
 
     puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
-    # puts resp.inspect
   end
 
   def vm_size_bundle_id
-    # "bundle_id" - lightsail instance sizes: micro_2_0 - 1 CPU (dev), medium_2_0 - 2 CPU (stag/prod), xlarge_2_0 - 4 CPU (perf)
+    # "bundle_id" - lightsail instance sizes:
+    #  - micro_2_0  - 1 CPU (dev)
+    #  - medium_2_0 - 2 CPU (stag/prod)
+    #  - xlarge_2_0 - 4 CPU (perf)
     case VM_SIZE
     when "medium", "default", "staging" then "medium_2_0"
     when "big", "production" then "xlarge_2_0"

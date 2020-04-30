@@ -4,11 +4,7 @@ module VMPorts
     # note: 80 and 22 are open by default
     "2377": :tcp, # docker swarm - communication between the nodes
     "4789": :udp, # docker swarm - overlay network traffic (container ingress networking)
-    # "7946": :tcp, # docker swarm - container network discovery
-    # "7946": :udp, # "
     "7946": :all, # docker swarm - container network discovery
-    # "3000": :tcp, # app
-    # "9000": :tcp, # explorer
   }
 
   def open_ports(instance, ports_definition: PORTS_DEFINITION_DEFAULT)
@@ -16,7 +12,7 @@ module VMPorts
     ports_definition.each do |port, proto|
       port  = port.to_s
 
-      sleep 8 # unpredictable if aws lags this could fail :D, FIXME
+      sleep 8 # unpredictable if aws lags this could fail :D, FIXME - create a status check via polling with the ruby aws sdk
       sleep 4 if instance[-1] == "2" # note: hack
       puts "opening #{port} - #{proto} on #{instance}"
 

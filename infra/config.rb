@@ -2,8 +2,7 @@ AWS_PROFILE_NAME = ENV["AWS_PROFILE_NAME"] || "default"
 
 KEY_PAIR_NAME = ENV["KEY_PAIR_NAME"] || "makevoid"
 
-# note: this is for deletion, please use INTERACTIVE unless this is stable
-# INTERACTIVE = false
+# INTERACTIVE = false # disables the "Ctrl-C"-to-continue prompt
 INTERACTIVE = true
 
 # VM_ENV = "dev" # default

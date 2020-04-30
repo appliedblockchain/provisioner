@@ -1,5 +1,8 @@
 # how to provision an environment
 
+note: this doc is in WIP
+
+
 ### Steps
 
 ##### 1 - Create VMs and Load balancer via provisioner/lightsail  (AWS Lightsail)

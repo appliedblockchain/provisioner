@@ -15,8 +15,6 @@ require_relative 'lib/load_bal'
 # stacks
 require_relative 'lib/stacks'
 
-# note: for now just include everything in the main namespace (TODO refactor)
-
 include VMs
 include VMPorts
 include LoadBal

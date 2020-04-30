@@ -3,7 +3,6 @@ module Stacks
   def deploy_stack(stack_name:)
     puts "Deploying stack - name: #{stack_name} - AWS: #{AWS_PROFILE_NAME} - VM size: #{VM_SIZE} - KEY: #{KEY_PAIR_NAME}"
 
-    # TODO: support a non-interactive mode
     puts "\nPress any key to continue or Ctrl-C to quit.\n"
     gets
 
@@ -33,12 +32,6 @@ module Stacks
   end
 
   def delete_stack(stack_name:)
-    # new TODO new delete vms
-    #
-    # vms()
-    # select by name
-    # select by tag env
-
     puts "Deleting stack - #{stack_name}"
     puts "This will delete 2 VMs and 1 Load Balancer!"
     puts "Are you sure? Hit Ctrl-C to terminate!"

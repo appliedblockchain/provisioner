@@ -33,8 +33,6 @@ vms_list if CMD == "list"
 # ---
 delete_stack stack_name: STACK_NAME if CMD == "destroy"
 
-# exit
-
 # DEPLOY STACK
 #
 #   Provision a new Stack (#provisioning, #infra_deployment)

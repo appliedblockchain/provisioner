@@ -19,14 +19,11 @@ module LoadBal
         certificate_alternative_names: ["subdomain.appb.ch"],
         tags: tags,
       })
-    # TODO: rescue already created
+    # TODO: rescue specific exception - in case the LB is already created, remove generic rescue
     rescue Exception => err
       raise err
     end
 
-    # if DEBUG TODO imrpove logging
-    # puts "Result:"
-    # puts "#{resp}\n"
     puts "Status: #{resp[:operations].map{ |op| op[:status].inspect }.join ", "}"
   end
 
