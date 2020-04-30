@@ -2,15 +2,11 @@
 
 sshCmd = SSHUtils::SSHCmd
 
-sshCmdR = (cmd) -> { sshCmd.(cmd, :open3) }
 sshCmd = (cmd) -> { sshCmd.(cmd) }
 
-sshCmd.("cp /home/ubuntu/.ssh/authorized_keys ~/.ssh/authorized_keys")
-
-# ---
-# root
-
 Prepare -> {
+  sshCmd.("cp /home/ubuntu/.ssh/authorized_keys ~/.ssh/authorized_keys")
+
   sshCmd.("apt update -y")
 
   sshCmd.("cd /tmp/ && wget http://nginx.org/keys/nginx_signing.key
