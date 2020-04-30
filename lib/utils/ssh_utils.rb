@@ -39,4 +39,8 @@ module SSHUtils
     exe "ssh -t root@#{ip} \"#{cmd}\"", open3: open3
   }
 
+  SSHCmdR = -> (ip, cmd) {
+    rexe "ssh -t root@#{ip} \"#{cmd}\""
+  }
+
 end

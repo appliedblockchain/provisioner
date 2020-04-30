@@ -18,4 +18,12 @@ module Utils
     out
   end
 
+  def rexe(cmd)
+    puts "executing: #{cmd}"
+    out = `#{cmd}`
+    puts out
+    puts "#{err}\n"
+    out
+  end
+
 end
