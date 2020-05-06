@@ -23,7 +23,9 @@ CMD_DEFAULT = "and-deplot" unless defined? CMD_DEFAULT
 STACK_NAME = ENV["STACK"] || STACK_NAME_DEFAULT
 CMD = ENV["CMD"] || CMD_DEFAULT
 
-CURRENT_AVAIL_ZONE = "a"
+DB = { }
+
+DB["CURRENT_AVAIL_ZONE"] = "a"
 
 # LIST
 # ---

@@ -3,12 +3,8 @@ module VMs
   ENV_DEFAULT = defined?(VM_ENV) ? VM_ENV : "dev"
 
   def deploy_vm(name, env: ENV_DEFAULT, type: "docker-node")
-    avail_zone = if defined?(CURRENT_AVAIL_ZONE)
-      Object.send :remove_const, "CURRENT_AVAIL_ZONE"
-      "a" # AZ A
-    else
-      "b" # AZ B
-    end
+    avail_zone = if DB["CURRENT_AVAIL_ZONE"] == "a" ? "a" : "b"
+    DB["CURRENT_AVAIL_ZONE"] = "b"
 
     tags = virtual_machine_tags(name: name, env: env, type: type)
 
