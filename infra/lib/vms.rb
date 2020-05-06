@@ -58,8 +58,8 @@ module VMs
   def vm_size_bundle_id
     # "bundle_id" - lightsail instance sizes:
     #  - micro_2_0  - 1 CPU (dev)
-    #  - medium_2_0 - 2 CPU (stag/prod)
-    #  - xlarge_2_0 - 4 CPU (perf)
+    #  - medium_2_0 - 2 CPU (stag)
+    #  - xlarge_2_0 - 4 CPU (prod/perf-test) - consider ec2 for prod for private/public subnets and vpc peering if you want to use this for private deployments
     case VM_SIZE
     when "medium", "default", "staging" then "medium_2_0"
     when "big", "production" then "xlarge_2_0"
