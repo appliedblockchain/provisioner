@@ -3,10 +3,10 @@ module VMs
   ENV_DEFAULT = defined?(VM_ENV) ? VM_ENV : "dev"
 
   def deploy_vm(name, env: ENV_DEFAULT, type: "docker-node")
-    avail_zone = if DB["CURRENT_AVAIL_ZONE"] == "a" ? "a" : "b"
+    avail_zone = DB["CURRENT_AVAIL_ZONE"] == "a" ? "a" : "b"
     DB["CURRENT_AVAIL_ZONE"] = "b"
 
-    tags = virtual_machine_tags(name: name, env: env, type: type)
+    tags = virtual_machine_tags name: name, env: env, type: type
 
     begin
       resp = LS.create_instances({
@@ -64,6 +64,8 @@ module VMs
     when "medium", "default", "staging" then "medium_2_0"
     when "big", "production" then "xlarge_2_0"
     when "small", "dev" then "micro_2_0"
+    else
+      raise "VM_SIZE not correct, please choose between the allowed ones: `small, medium, large`"
     end
   end
 
