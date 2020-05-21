@@ -62,8 +62,8 @@ module VMs
     #  - xlarge_2_0 - 4 CPU (prod/perf-test) - consider ec2 for prod for private/public subnets and vpc peering if you want to use this for private deployments
     case VM_SIZE
     when "medium", "default", "staging" then "medium_2_0"
-    when "big", "production" then "xlarge_2_0"
-    when "small", "dev" then "micro_2_0"
+    when "large",  "production" then "xlarge_2_0"
+    when "small",  "dev" then "micro_2_0"
     else
       raise "VM_SIZE not correct, please choose between the allowed ones: `small, medium, large`"
     end
