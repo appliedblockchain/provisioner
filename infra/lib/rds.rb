@@ -68,4 +68,6 @@ end
 
 # Usage:
 #
-# LightsailDB.provision
+# LightsailDB.provision # provisions a new instance
+#
+# LightsailDB.status # returns the status of the last db provisioned (easy but not fast :))
