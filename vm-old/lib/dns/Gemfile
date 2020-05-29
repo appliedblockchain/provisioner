@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+gem "dnsimple"
+gem "redis"
+
+gem "bundler", "2.0.1" 

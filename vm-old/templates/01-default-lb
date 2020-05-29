@@ -1,0 +1,35 @@
+# round robin load balance between two VMs (high availability)
+upstream backend {
+   server <IP_0>;
+   server <IP_1>;
+}
+
+server {
+  # server name
+  server_name <SERVER_NAME>;
+
+  # non https traffic disabled
+  #	listen 80 default_server;
+  #	listen [::]:80 default_server;
+
+  # HTTPS (SSL)
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+
+  ssl on;
+ 	ssl_certificate /etc/cert/STAR_abaub_io.pem;
+  ssl_certificate_key /etc/cert/STAR_abaub_io.key;
+
+  # recent TLS
+	ssl_protocols TLSv1.1 TLSv1.2;
+	ssl_ciphers ECDHE-ECDSA-CHACHA20-POLY1305:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:!AES256-GCM-SHA256:!AES256-GCM-SHA128:!aNULL:!MD5;
+	proxy_ssl_protocols TLSv1.2;
+	proxy_ssl_ciphers   HIGH:!aNULL:!MD5;
+
+  # force HTTPS header
+  add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload;";
+
+  location / {
+  	proxy_pass http://backend;
+  }
+}
