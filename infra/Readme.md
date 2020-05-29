@@ -1,8 +1,8 @@
 ### Kubernetes (k3s) infrastructure provisioning
 
 k3s - setup of k3s - choose sql persistence (recommended)
-DNSimple programmatic dns integration
 
+dnsimple integration - DNSimple programmatic dns integration
 
 
 #### Project Details, full description of the project:
