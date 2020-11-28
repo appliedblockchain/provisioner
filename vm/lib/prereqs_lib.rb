@@ -30,7 +30,7 @@ module PrereqsLib
     puts "B: #{IP_B}" if IP_B
     puts "\n\n"
 
-    AddSSHKnownHosts.()
+    # AddSSHKnownHosts.()
 
     puts "Press any key to proceed or 'Ctrl-C' to abort..."
     gets if CLI_RUN
