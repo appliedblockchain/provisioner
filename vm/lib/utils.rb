@@ -10,11 +10,13 @@ module Utils
     puts "executing: #{cmd}"
     unless open3
       out = system cmd
+      raise "BashCommandFailedError - latest shell command failed, aborting - command: #{cmd.inspect}" unless out
     else
       out, err, st = Open3.capture3 cmd
     end
     puts out
-    puts "#{err}\n"
+    puts "ERROR: #{err}\n" if err
+    raise "BashCommandFailedError - latest shell command failed, aborting - command: #{cmd.inspect}" if err
     out
   end
 
