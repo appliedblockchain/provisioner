@@ -13,14 +13,11 @@ module SetupDockerSwarm
   }
 
   Setup = -> {
+    return unless IP_B # don't setup swarm if there's only a single VM (ip)
+
     sshCmd = SSHUtils::SSHCmd
-    status = sshCmd.(IP_A, "docker node ls", nil)
-
-    return unless IP_B
-    puts "Swarm status: #{status}"
-
     status = sshCmd.(IP_A, "docker swarm init", nil)
-    joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token  manager", nil)
+    joinTokenCommand = sshCmd.(IP_A, "docker swarm join-token manager", nil)
     joinResponse = sshCmd.(IP_B, joinTokenCommand, :open3)
 
     ReportStatus.(status, joinTokenCommand, joinResponse)
