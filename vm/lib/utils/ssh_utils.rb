@@ -34,9 +34,10 @@ module SSHUtils
     threads.map &:join
   end
 
-  SSHCmd = -> (ip, cmd, open3) {
+  SSHCmd = -> (ip, cmd, open3=nil, no_abort=nil) {
     open3 = !!(open3 == :open3)
-    exe "ssh -t root@#{ip} \"#{cmd}\"", open3: open3
+    abort_on_fail = no_abort != :no_abort
+    exe "ssh -t root@#{ip} \"#{cmd}\"", open3: open3, abort_on_fail: abort_on_fail
   }
 
 end
