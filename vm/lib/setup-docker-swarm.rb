@@ -3,6 +3,7 @@ module SetupDockerSwarm
   include SSHUtils
 
   def reportStatus(status:, joinToken:, joinResponse:)
+    sshCmd = SSHUtils::SSHCmd
     status = sshCmd.(IP_A, "docker node ls", :open3)
     puts "Token response: #{joinToken.inspect}\n"
     puts "Join response: #{joinResponse.inspect}\n"
