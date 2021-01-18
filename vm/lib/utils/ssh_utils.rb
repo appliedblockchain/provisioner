@@ -18,7 +18,7 @@ module SSHUtils
     threads = []
     IPS.each do |swarm_node_ip|
       threads << Thread.new do
-        exe "ssh root@#{swarm_node_ip} \"#{cmd}\""
+        exe "ssh -t root@#{swarm_node_ip} \"#{cmd}\""
       end
     end
     threads.map &:join
@@ -28,7 +28,7 @@ module SSHUtils
     threads = []
     IPS.each do |swarm_node_ip|
       threads << Thread.new do
-        exe "ssh #{user}@#{swarm_node_ip} 'sudo su -c \"#{cmd}\"'"
+        exe "ssh -t #{user}@#{swarm_node_ip} 'sudo su -c \"#{cmd}\"'"
       end
     end
     threads.map &:join
