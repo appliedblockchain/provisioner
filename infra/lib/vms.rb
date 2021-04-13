@@ -12,7 +12,7 @@ module VMs
       resp = LS.create_instances({
         instance_names: [name], # required
         availability_zone: "#{AWS_REGION}#{avail_zone}", # required
-        blueprint_id: "debian_9_5",
+        blueprint_id: "debian_10",
         bundle_id: vm_size_bundle_id,
         key_pair_name: KEY_PAIR_NAME,
         # user_data: "string", # add a custom script like `apt -y update && apt -y install vim git curl ...`
